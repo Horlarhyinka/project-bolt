@@ -57,7 +57,7 @@ export const createDocument = catchAsync(async(req: Request, res: Response) =>{
     let userPersona = await Persona.findOne({ id: user?._id })
     if(!userPersona){
         const voice = await VoiceService.getRandomVoice()
-        userPersona = await Persona.create({ id: user?._id, voice: voice?._id, role: 'student', name: ''})
+        userPersona = await Persona.create({ id: user?._id, voice: voice?._id, role: 'student', name: `${user?.lastName} ${user?.firstName}`})
     }
     if(!userPersona)throw Error('An error occured: unable to create persona')
     const otherPersonas = await PersonaService.createNPersona(['student', 'student', 'teacher'])
