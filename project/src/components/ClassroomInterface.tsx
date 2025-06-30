@@ -516,7 +516,7 @@ const ClassroomInterface: React.FC<ClassroomInterfaceProps> = () => {
     // Add optimistic message immediately
     setMessages(prev => [...prev, optimisticMessage]);
 
-    if (globalSocket && connectionStatus === 'connected' && channelId) {
+    if (globalSocket) {
       globalSocket.emit('user_message', {channel: channelId, body: messageText});
       setIsTyping(true);
       
@@ -1066,7 +1066,7 @@ const ClassroomInterface: React.FC<ClassroomInterfaceProps> = () => {
                             <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
                             <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                           </div>
-                          <span className="text-sm text-gray-500">AI is thinking...</span>
+                          <span className="text-sm text-gray-500">Someone is typing...</span>
                         </div>
                       </motion.div>
                     )}
