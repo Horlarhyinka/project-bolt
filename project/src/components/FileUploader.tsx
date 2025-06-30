@@ -6,6 +6,8 @@ import Button from './ui/Button';
 import { generateFileThumbnail, generateId } from '../utils/helpers';
 import { Document } from '../types';
 import fetchWrapper from '../utils/fetchWrapper';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 interface FileUploaderProps {
   onFileProcessed: (document: Document) => void;
@@ -16,6 +18,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileProcessed }) => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
+  const router = useRouter()
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (!file) return;
@@ -36,8 +39,10 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileProcessed }) => {
     fetchWrapper.post(process.env.NEXT_PUBLIC_API_BASE_URL! + '/docs', payload)
     .then((res)=>{
       setUploadProgress(90)
-      if(res.status?.startsWith('2')){
+      if(res.status?.toString().startsWith('2')){
         setUploadProgress(100)
+        toast.success('Your document has been uploaded.')
+        router.push('/documents')
       }
     })
     .catch((err)=>{

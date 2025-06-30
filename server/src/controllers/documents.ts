@@ -53,6 +53,7 @@ export const createDocument = catchAsync(async(req: Request, res: Response) =>{
         await document.save()
         return;
     }
+    try{
     let userPersona = await Persona.findOne({ id: user?._id })
     if(!userPersona){
         const voice = await VoiceService.getRandomVoice()
@@ -69,6 +70,13 @@ export const createDocument = catchAsync(async(req: Request, res: Response) =>{
         await document.save()
     }
     return
+    }catch(err){
+        console.log('error occured:', err)
+        document.status = 'failed'
+        await document.save()
+        return;
+    }
+
 })
 
 export const getDocuments = catchAsync(async(req: AuthRequest, res: Response) =>{
