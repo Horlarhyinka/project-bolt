@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react';
-import { signIn } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 
@@ -20,9 +19,6 @@ const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
   callbackUrl = '/documents',
   onClick,
 }) => {
-  const handleSignIn = () => {
-    signIn('google', { callbackUrl });
-  };
 
   const GoogleIcon = () => (
     <svg className="w-5 h-5" viewBox="0 0 24 24">

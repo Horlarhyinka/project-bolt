@@ -2,34 +2,34 @@ import { Document, Lecture, LectureSection, Note, Question } from '../types';
 
 export const mockDocuments: Document[] = [
   {
-    id: '1',
-    title: 'Introduction to Machine Learning',
-    fileName: 'intro-to-ml.pdf',
-    fileType: 'pdf',
-    uploadDate: '2023-06-15T10:30:00Z',
+    _id: '1',
+    name: 'Introduction to Machine Learning',
+    url: 'intro-to-ml.pdf',
     size: 1458000,
-    status: 'ready',
+    status: 'success',
     thumbnail: 'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    createdAt: '2023-06-15T10:30:00Z',
+    updatedAt: '2023-06-15T10:30:00Z',
   },
   {
-    id: '2',
-    title: 'Advanced React Patterns',
-    fileName: 'react-patterns.pdf',
-    fileType: 'pdf',
-    uploadDate: '2023-07-02T14:15:00Z',
+    _id: '2',
+    name: 'Advanced React Patterns',
+    url: 'react-patterns.pdf',
     size: 2540000,
-    status: 'ready',
+    status: 'success',
     thumbnail: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    createdAt: '2023-07-02T14:15:00Z',
+    updatedAt: '2023-07-02T14:15:00Z',
   },
   {
-    id: '3',
-    title: 'Quantum Computing Basics',
-    fileName: 'quantum-basics.docx',
-    fileType: 'docx',
-    uploadDate: '2023-07-10T09:45:00Z',
+    _id: '3',
+    name: 'Quantum Computing Basics',
+    url: 'quantum-basics.docx',
     size: 1240000,
-    status: 'processing',
+    status: 'pending',
     thumbnail: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    createdAt: '2023-07-10T09:45:00Z',
+    updatedAt: '2023-07-10T09:45:00Z',
   },
 ];
 
@@ -69,6 +69,7 @@ export const mockLectureSections: LectureSection[] = [
 export const mockLecture: Lecture = {
   id: 'l1',
   documentId: '1',
+  simulationId: 'sim1',
   title: 'Introduction to Machine Learning',
   sections: mockLectureSections,
   createdAt: '2023-06-15T11:30:00Z',
@@ -78,7 +79,7 @@ export const mockLecture: Lecture = {
 export const mockNotes: Note[] = [
   {
     id: 'n1',
-    lectureId: 'l1',
+    simulationId: 'sim1',
     sectionId: 's1',
     content: 'ML is a subset of AI - focuses on learning from data without explicit programming.',
     createdAt: '2023-06-15T11:35:00Z',
@@ -86,7 +87,7 @@ export const mockNotes: Note[] = [
   },
   {
     id: 'n2',
-    lectureId: 'l1',
+    simulationId: 'sim1',
     sectionId: 's2',
     content: 'Supervised learning uses labeled data to train models. Examples: classification, regression.',
     createdAt: '2023-06-15T11:40:00Z',
@@ -97,7 +98,7 @@ export const mockNotes: Note[] = [
 export const mockQuestions: Question[] = [
   {
     id: 'q1',
-    lectureId: 'l1',
+    simulationId: 'sim1',
     sectionId: 's1',
     question: 'What is the main difference between machine learning and traditional programming?',
     answer: 'In traditional programming, a programmer writes explicit rules to solve a problem. In machine learning, the algorithm learns patterns from data to make predictions or decisions without being explicitly programmed with rules. Machine learning models improve their performance over time as they are exposed to more data.',
@@ -105,7 +106,7 @@ export const mockQuestions: Question[] = [
   },
   {
     id: 'q2',
-    lectureId: 'l1',
+    simulationId: 'sim1',
     sectionId: 's2',
     question: 'Can you explain the difference between classification and regression in supervised learning?',
     answer: 'Classification and regression are both types of supervised learning tasks. Classification involves predicting a categorical label (e.g., spam/not spam, cat/dog), while regression involves predicting a continuous numerical value (e.g., house prices, temperature). Classification models output probabilities or discrete class labels, whereas regression models output continuous values.',

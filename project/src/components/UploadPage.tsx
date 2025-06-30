@@ -22,7 +22,7 @@ const UploadPage: React.FC = () => {
       if (document && uploadedDocument) {
         setUploadedDocument({
           ...document,
-          status: 'ready',
+          status: 'success',
         });
       }
     }, 3000);
@@ -88,7 +88,7 @@ const UploadPage: React.FC = () => {
           className="bg-white rounded-xl shadow-apple-sm p-8 text-center"
         >
           <div className="mb-6">
-            {uploadedDocument?.status === 'processing' ? (
+            {uploadedDocument?.status === 'pending' ? (
               <>
                 <div className="inline-block p-3 bg-warning-50 rounded-full mb-4">
                   <div className="w-12 h-12 rounded-full border-4 border-warning-200 border-t-warning-500 animate-spin" />
@@ -111,7 +111,7 @@ const UploadPage: React.FC = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
-                    onClick={() => router.push(`/lecture/${uploadedDocument?.id}`)}
+                    onClick={() => router.push(`/lecture/${uploadedDocument?._id}`)}
                   >
                     View Lecture
                   </Button>
@@ -126,7 +126,7 @@ const UploadPage: React.FC = () => {
             )}
           </div>
           
-          {uploadedDocument?.status === 'processing' && (
+          {uploadedDocument?.status === 'pending' && (
             <div className="mt-8 flex justify-center">
               <Button
                 variant="outline"
