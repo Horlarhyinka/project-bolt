@@ -33,8 +33,8 @@ app.use(Session({
     cookie: {
         maxAge: 30 * 60 * 1000,
         httpOnly: true,
-        secure: false, // set to true if using HTTPS in production
-        sameSite: 'lax', // consider 'none' if client is on a different host and using HTTPS
+        secure: true,
+        sameSite: 'none',
     }
 }))
 
