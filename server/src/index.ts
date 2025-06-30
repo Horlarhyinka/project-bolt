@@ -17,7 +17,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors({
-  origin: envVars.CLIENT_BASE_URL,
+  origin: '*',
   credentials: true
 }))
 app.use(Session({ 
