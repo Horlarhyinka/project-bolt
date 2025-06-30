@@ -17,19 +17,23 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: envVars.CLIENT_BASE_URL,
   credentials: true
 }))
 app.use(Session({ 
     secret: envVars.APP_SECRET, 
     resave: true,
     saveUninitialized: false,
-    store: MongoStore.create({collectionName: 'sessions', dbName: envVars.DB_NAME, mongoUrl: envVars.DB_URL, }),
+    store: MongoStore.create({
+        collectionName: 'sessions',
+        dbName: envVars.DB_NAME,
+        mongoUrl: envVars.DB_URL,
+    }),
     cookie: {
         maxAge: 30 * 60 * 1000,
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax', 
+        secure: false, // set to true if using HTTPS in production
+        sameSite: 'lax', // consider 'none' if client is on a different host and using HTTPS
     }
 }))
 
