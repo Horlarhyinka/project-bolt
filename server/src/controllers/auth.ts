@@ -33,7 +33,14 @@ export const authCallback = catchAsync(async(req: Request, res: Response) =>{
         (req.session as any).user = user;
         (req.session as any).token = AuthService.createToken(user?._id?.toString());
         console.log('Everything went well...', user)
-    res.redirect(envVars.AUTH_REDIRECT_URL)
+        req.session.save(err => {
+        if (err) {
+            console.error('Error saving session:', err);
+            return res.redirect(envVars.AUTH_REDIRECT_URL + '?error=session');
+        }
+        res.redirect(envVars.AUTH_REDIRECT_URL);
+        });
+
     return
     }catch(err){
         console.log('Auth callback error:', err)
