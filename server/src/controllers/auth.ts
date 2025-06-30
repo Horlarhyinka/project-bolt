@@ -49,7 +49,9 @@ export const getSession = catchAsync(async(req: Request, res: Response)=>{
         res.status(401).json({message: 'Unauthenticated'})
         return
     }
+    console.log({user, token})
     const validateRes = await AuthService.validateToken(token)
+    console.log({validateRes})
     if(!validateRes){
         (req.session as any).user = null;
         (req.session as any).token = null;
